@@ -5,7 +5,7 @@
 ## Getting Started
 
 ## screen shots
-<img src = "https://user-images.githubusercontent.com/121785209/216533992-4fceb055-6a1d-4b32-8bb7-5e95a4d873d2.png"/>
+<img src = "https://user-images.githubusercontent.com/121785209/216533992-4fceb055-6a1d-4b32-8bb7-5e95a4d873d2.png" "height = 500px"/>
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
