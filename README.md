@@ -1,12 +1,11 @@
 # mb2
 
-A new Flutter project.
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
+## screen shots
+<img src = "https://user-images.githubusercontent.com/121785209/216533992-4fceb055-6a1d-4b32-8bb7-5e95a4d873d2.png"/>
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
