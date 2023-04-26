@@ -11,8 +11,6 @@ class Song extends StatefulWidget {
 class _SongState extends State<Song> with TickerProviderStateMixin {
   final assetAudioPlayer = AssetsAudioPlayer();
 
-  bool play = true;
-
   AnimationController? myController;
 
   @override
@@ -94,9 +92,7 @@ class _SongState extends State<Song> with TickerProviderStateMixin {
                         children: [
                           IconButton(
                               onPressed: () {
-                                setState(() {
-                                  assetAudioPlayer.stop();
-                                });
+                                assetAudioPlayer.stop();
                               },
                               icon: const Icon(
                                 Icons.stop,
@@ -118,6 +114,7 @@ class _SongState extends State<Song> with TickerProviderStateMixin {
                                       myController!.reverse();
                                     } else {
                                       assetAudioPlayer.play();
+
                                       myController!.forward();
                                     }
                                   },
@@ -149,10 +146,10 @@ class _SongState extends State<Song> with TickerProviderStateMixin {
                               children: [
                                 Slider(
                                   value: snapshot.data!.inSeconds.toDouble(),
-                                  onChanged: (val) {
+                                  onChanged: (e) {
                                     setState(() {
                                       assetAudioPlayer
-                                          .seek(Duration(seconds: val.toInt()));
+                                          .seek(Duration(seconds: e.toInt()));
                                     });
                                   },
                                   max: (assetAudioPlayer.current.value != null)
