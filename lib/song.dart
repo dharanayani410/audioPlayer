@@ -8,10 +8,19 @@ class Song extends StatefulWidget {
   State<Song> createState() => _SongState();
 }
 
-class _SongState extends State<Song> {
+class _SongState extends State<Song> with TickerProviderStateMixin {
   final assetAudioPlayer = AssetsAudioPlayer();
 
   bool play = true;
+
+  AnimationController? myController;
+
+  @override
+  void initState() {
+    super.initState();
+    myController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 200));
+  }
 
   @override
   void dispose() {
@@ -77,7 +86,7 @@ class _SongState extends State<Song> {
                             color: Colors.white60,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
@@ -97,24 +106,29 @@ class _SongState extends State<Song> {
                           const SizedBox(
                             width: 30,
                           ),
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                play = !play;
-                                assetAudioPlayer.playOrPause();
-                              });
+                          StreamBuilder(
+                            builder: (context, snapshot) {
+                              if (snapshot.data!) {
+                                myController!.forward();
+                              }
+                              return IconButton(
+                                  onPressed: () {
+                                    if (snapshot.data!) {
+                                      assetAudioPlayer.pause();
+                                      myController!.reverse();
+                                    } else {
+                                      assetAudioPlayer.play();
+                                      myController!.forward();
+                                    }
+                                  },
+                                  icon: AnimatedIcon(
+                                    icon: AnimatedIcons.play_pause,
+                                    color: Colors.white,
+                                    size: 35,
+                                    progress: myController!,
+                                  ));
                             },
-                            icon: (play == true)
-                                ? Icon(
-                                    Icons.pause,
-                                    color: Colors.white,
-                                    size: 35,
-                                  )
-                                : Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.white,
-                                    size: 35,
-                                  ),
+                            stream: assetAudioPlayer.isPlaying,
                           ),
                           const SizedBox(
                             width: 30,

@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                 Icons.arrow_forward_ios_outlined,
                 color: Colors.white,
               ),
-              tileColor: Global.music[i]['color'],
+              tileColor: Colors.primaries[i % 18].shade300,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               onTap: () {
